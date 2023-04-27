@@ -1,0 +1,55 @@
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .form-container {
+    flex: 1;
+    padding: 30px;
+  }
+  
+  .p-card {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  
+  .p-card-title {
+    margin-top: 0;
+  }
+  
+  .p-field {
+    margin-bottom: 20px;
+  }
+  
+  .p-field-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .p-field-checkbox label {
+    margin-left: 10px;
+  }
+  
+  .p-button {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+  }
+  

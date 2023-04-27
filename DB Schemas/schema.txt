@@ -1,33 +1,38 @@
-CREATE TABLE users (
-  user_id INT PRIMARY KEY,
+CREATE TABLE Users (
+  user_id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(50) NOT NULL,
-  password VARCHAR(100) NOT NULL,
+  password VARCHAR(50) NOT NULL,
   email VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (user_id)
 );
-CREATE TABLE roles (
-  role_id INT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  description VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE Roles (
+  role_id INT NOT NULL AUTO_INCREMENT,
+  role_name VARCHAR(50) NOT NULL,
+  PRIMARY KEY (role_id)
 );
-CREATE TABLE user_role_mapping (
+CREATE TABLE User_Roles_Mapping (
+  user_role_mapping_id INT NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
   role_id INT NOT NULL,
-  PRIMARY KEY (user_id, role_id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
-  FOREIGN KEY (role_id) REFERENCES roles(role_id)
+  PRIMARY KEY (user_role_mapping_id),
+  FOREIGN KEY (user_id) REFERENCES Users(user_id),
+  FOREIGN KEY (role_id) REFERENCES Roles(role_id)
 );
-CREATE TABLE components (
-  component_id INT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  description VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE Components (
+  component_id INT NOT NULL AUTO_INCREMENT,
+  component_name VARCHAR(50) NOT NULL,
+  component_link VARCHAR(200) NOT NULL,
+  parent_component_id INT,
+  PRIMARY KEY (component_id),
+  FOREIGN KEY (parent_component_id) REFERENCES Components(component_id)
 );
-CREATE TABLE component_role_mapping (
+CREATE TABLE Component_Roles_Mapping (
+  component_role_mapping_id INT NOT NULL AUTO_INCREMENT,
   component_id INT NOT NULL,
   role_id INT NOT NULL,
-  PRIMARY KEY (component_id, role_id),
-  FOREIGN KEY (component_id) REFERENCES components(component_id),
-  FOREIGN KEY (role_id) REFERENCES roles(role_id)
+  PRIMARY KEY (component_role_mapping_id),
+  FOREIGN KEY (component_id) REFERENCES Components(component_id),
+  FOREIGN KEY (role_id) REFERENCES Roles(role_id)
 );

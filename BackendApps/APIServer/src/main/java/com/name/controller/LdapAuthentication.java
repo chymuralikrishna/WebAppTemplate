@@ -1,4 +1,4 @@
-package com.name.WebAppTemplate.Authentication;
+package com.name.controller;
 
 import java.util.Hashtable;
 import java.util.ResourceBundle;
