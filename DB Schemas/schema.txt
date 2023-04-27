@@ -1,0 +1,33 @@
+CREATE TABLE users (
+  user_id INT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE roles (
+  role_id INT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  description VARCHAR(100) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE user_role_mapping (
+  user_id INT NOT NULL,
+  role_id INT NOT NULL,
+  PRIMARY KEY (user_id, role_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  FOREIGN KEY (role_id) REFERENCES roles(role_id)
+);
+CREATE TABLE components (
+  component_id INT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  description VARCHAR(100) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE component_role_mapping (
+  component_id INT NOT NULL,
+  role_id INT NOT NULL,
+  PRIMARY KEY (component_id, role_id),
+  FOREIGN KEY (component_id) REFERENCES components(component_id),
+  FOREIGN KEY (role_id) REFERENCES roles(role_id)
+);
